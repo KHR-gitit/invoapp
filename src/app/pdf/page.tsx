@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
@@ -109,17 +109,30 @@ const MyDocument = ({invoice}:Props) => (
 </Document>
 );
 
+
 export default function Pdf () {
-    return(
+
+    const [isClient, setIsClient] = useState(false)
+  
+    useEffect(() => {
+      setIsClient(true)
+    }, [])
+    
+    return (
+      <>
+        { isClient ?
         <>
-            <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
-                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
-            <PDFViewer className='w-full h-screen'>
-                <MyDocument invoice={invoiceData}/>
-            </PDFViewer>
-        </>
-        )
-}
+        <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
+            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
+        <PDFViewer className='w-full h-screen'>
+            <MyDocument invoice={invoiceData}/>
+        </PDFViewer>
+    </>
+        : null}
+      </>
+    )
+  }
+  
 
 
 
