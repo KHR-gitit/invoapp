@@ -32,8 +32,10 @@ const styles = StyleSheet.create({
     },
    
   });
-
-const PdfTableBlankSpace = ({rowsCount}) => {
+interface Props {
+    rowsCount: number;
+}
+const PdfTableBlankSpace = ({rowsCount}:Props) => {
     const blankRows = Array(rowsCount).fill(0)
     const rows = blankRows.map( (x, i) => 
         <View style={styles.row} key={`BR${i}`}>
