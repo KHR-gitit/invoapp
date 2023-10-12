@@ -14,7 +14,7 @@ export default function HomePage() {
           <span className="text-purple-400">invo</span> App
         </h1>
         <div className="bg-gray-50 px-5 py-10 rounded-lg">
-          <h3 className="text-3xl opacity-100 text-slate-600">Making Invoice Made Easy</h3>
+          <h3 className="text-3xl opacity-100">Making Invoice Made Easy</h3>
         </div>
         <div className="flex w-full max-w-sm flex-col items-center gap-8">
           {/** @ts-expect-error - Async Server Component */}

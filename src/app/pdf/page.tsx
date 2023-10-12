@@ -138,6 +138,6 @@ const MyDocument = ({invoice}:Props) => (
 
 
 
-
+  export const dynamic = "force-dynamic";
 
 
