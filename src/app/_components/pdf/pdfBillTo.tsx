@@ -12,8 +12,29 @@ const styles = StyleSheet.create({
     },
   });
 
+  interface Props {
+    invoice: {
+        id: string;
+        invoice_no: string;
+        balance: string;
+        company: string;
+        email: string;
+        phone: string;
+        address: string;
+        trans_date: string;
+        due_date: string;
+        items: {
+            sno: number;
+            desc: string;
+            qty: number;
+            rate: number;
+        }[]
 
-  const PdfBillTo = ({invoice}) => (
+    };
+
+    
+  }
+  const PdfBillTo = ({invoice}:Props) => (
     <View style={styles.headerContainer}>
         <Text style={styles.billTo}>Bill To:</Text>
         <Text>{invoice.company}</Text>
