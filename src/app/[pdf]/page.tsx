@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
-import PdfTitle from './../_components/pdf/pdfTitle'
-import PdfBillTo from './../_components/pdf/pdfBillTo'
-import PdfNum from './../_components/pdf/pdfNum'
-import PdfItemTable from './../_components/pdf/pdfItemTable'
-import PdfTYMessage from './../_components/pdf/pdfTYMessage'
+import PdfTitle from '../_components/pdf/pdfTitle'
+import PdfBillTo from '../_components/pdf/pdfBillTo'
+import PdfNum from '../_components/pdf/pdfNum'
+import PdfItemTable from '../_components/pdf/pdfItemTable'
+import PdfTYMessage from '../_components/pdf/pdfTYMessage'
 
 const invoiceData = {
     id: "5df3180a09ea16dc4b95f910",
@@ -110,27 +110,26 @@ const MyDocument = ({invoice}:Props) => (
 );
 
 
-export default function Pdf () {
 
+  export default function Pdf () {
     const [isClient, setIsClient] = useState(false)
   
     useEffect(() => {
       setIsClient(true)
     }, [])
-    
+  
     return (
       <>
-        { isClient ?
-        <>
-        <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
-        <PDFViewer className='w-full h-screen'>
-            <MyDocument invoice={invoiceData}/>
-        </PDFViewer>
-    </>
-        : null}
+        {isClient && (<>
+            <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
+          <PDFViewer className='w-full h-screen'>
+                <MyDocument invoice={invoiceData}/>
+          </PDFViewer> 
+        </>
+        )}
       </>
-    )
+    );
   }
   
 
