@@ -38,9 +38,19 @@ const styles = StyleSheet.create({
         paddingRight: 8,
     },
   });
+  interface Props {
 
+        items: {
+            sno: number;
+            desc: string;
+            qty: number;
+            rate: number;
+        }[]
 
-const PdfTableRow = ({items}) => {
+    
+  }
+
+const PdfTableRow = ({items}:Props) => {
     const rows = items.map( item => 
         <View style={styles.row} key={item.sno.toString()}>
             <Text style={styles.description}>{item.desc}</Text>

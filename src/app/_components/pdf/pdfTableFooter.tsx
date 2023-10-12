@@ -26,14 +26,24 @@ const styles = StyleSheet.create({
     },
   });
 
+  interface Props {
 
-const PdfTableFooter = ({items}) => {
-    const total = items.map(item => item.qty * item.rate)
-        .reduce((accumulator, currentValue) => accumulator + currentValue , 0)
+        items: {
+            sno: number;
+            desc: string;
+            qty: number;
+            rate: number;
+        }[]
+
+    
+  }
+const PdfTableFooter = ({items}:Props) => {
+    const total:number = items.map(item => item.qty * item.rate)
+        .reduce((accumulator:number, currentValue:number) => accumulator + currentValue , 0)
     return(    
         <View style={styles.row}>
             <Text style={styles.description}>TOTAL</Text>
-            <Text style={styles.total}>{ Number.parseFloat(total).toFixed(2)}</Text>
+            <Text style={styles.total}>{total.toFixed(2)}</Text>
         </View>
     )
 };

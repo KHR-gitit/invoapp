@@ -15,9 +15,12 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     }
   });
+  interface Props {
+    title: string;
+    
+  }
 
-
-  const PdfTitle = ({title}) => (
+  const PdfTitle = ({title}:Props) => (
     <View style={styles.titleContainer}>
         <Text style={styles.reportTitle}>{title}</Text>
     </View>

@@ -16,8 +16,29 @@ const styles = StyleSheet.create({
         borderColor: '#bff0fd',
     },
 });
+interface Props {
+  invoice: {
+      id: string;
+      invoice_no: string;
+      balance: string;
+      company: string;
+      email: string;
+      phone: string;
+      address: string;
+      trans_date: string;
+      due_date: string;
+      items: {
+          sno: number;
+          desc: string;
+          qty: number;
+          rate: number;
+      }[]
 
-  const PdfItemsTable = ({invoice}) => (
+  };
+
+  
+}
+  const PdfItemsTable = ({invoice}:Props) => (
     <View style={styles.tableContainer}>
         <PdfTableHeader />
         <PdfTableRow items={invoice.items} />

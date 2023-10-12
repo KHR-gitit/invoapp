@@ -73,38 +73,56 @@ const styles = StyleSheet.create({
     }
   });
 
+  interface Props {
+    invoice: {
+        id: string;
+        invoice_no: string;
+        balance: string;
+        company: string;
+        email: string;
+        phone: string;
+        address: string;
+        trans_date: string;
+        due_date: string;
+        items: {
+            sno: number;
+            desc: string;
+            qty: number;
+            rate: number;
+        }[]
+
+    };
+
+    
+  }
+
 // Create Document Component
-const MyDocument = ({invoice}) => (
+const MyDocument = ({invoice}:Props) => (
     <Document>
     <Page size="A4" style={styles.page}>
         <PdfTitle title='Invoice'/>
         <PdfNum invoice={invoice}/>
-        <PdfBillTo invoice={invoice}/>
+        <PdfBillTo invoice={invoice} />
         <PdfItemTable invoice={invoice} />
         <PdfTYMessage />
     </Page>
 </Document>
 );
 
-
-
-export default function test(){
-return(
-    <div>
-    <PDFDownloadLink
-        document={<MyDocument invoice={invoiceData}/>}
-        fileName={`ajpaving-invoice.pdf`}
-    >
-        {({ blob, url, loading, error }) =>
-        loading ? 'Loading document...' : 'Download PDF'
-        }
-    </PDFDownloadLink>
-    <PDFViewer className='w-full h-screen'>
-        <MyDocument invoice={invoiceData}/>
-    </PDFViewer>
-    </div>
-    )
+export default function Pdf () {
+    return(
+        <>
+            <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
+                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
+            <PDFViewer className='w-full h-screen'>
+                <MyDocument invoice={invoiceData}/>
+            </PDFViewer>
+        </>
+        )
 }
+
+
+
 
 
 
