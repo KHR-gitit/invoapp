@@ -1,8 +1,7 @@
 "use client";
-import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
 import PdfTitle from '../_components/pdf/pdfTitle'
 import PdfBillTo from '../_components/pdf/pdfBillTo'
@@ -11,10 +10,7 @@ import PdfItemTable from '../_components/pdf/pdfItemTable'
 import PdfTYMessage from '../_components/pdf/pdfTYMessage'
 
 
-const PDFDownloadLink = dynamic(() => import("@react-pdf/renderer").then((mod) => mod.PDFDownloadLink), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
+
 const invoiceData = {
     id: "5df3180a09ea16dc4b95f910",
     invoice_no: "201906-28",
@@ -129,12 +125,21 @@ const MyDocument = ({invoice}:Props) => (
         {isClient && (<>
             <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
           {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
-
+          <PDFViewer className='w-full h-screen'>
+                <MyDocument invoice={invoiceData}/>
+          </PDFViewer> 
         </>
         )}
       </>
     );
   }
   
+
+
+
+
+
+
+  export const dynamic = "force-dynamic";
 
 
