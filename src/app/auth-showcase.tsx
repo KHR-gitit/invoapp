@@ -5,14 +5,11 @@ import Link from "next/link";
 export async function AuthShowcase() {
   const session = await getServerSession();
 
-  const secretMessage =
-    session?.user && (await api.post.getSecretMessage.query());
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4">
       <p className="text-center text-xl">
         {session && <span>Logged in as {session.user?.name}</span>}
-        {secretMessage && <span className="text-sm"> - {secretMessage}</span>}
       </p>
       <Link
         href={session ? "/api/auth/signout" : "/api/auth/signin"}

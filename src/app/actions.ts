@@ -13,12 +13,7 @@ export async function create(fd: FormData) {
 
   const text = fd.get("text") as string;
 
-  return await db.post.create({
-    data: {
-      text: text,
-      createdBy: { connect: { id: session?.user.id } },
-    },
-  });
+
 }
 
 // export const edit = createAction(

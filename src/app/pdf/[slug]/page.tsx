@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
-import PdfTitle from '../_components/pdf/pdfTitle'
-import PdfBillTo from '../_components/pdf/pdfBillTo'
-import PdfNum from '../_components/pdf/pdfNum'
-import PdfItemTable from '../_components/pdf/pdfItemTable'
-import PdfTYMessage from '../_components/pdf/pdfTYMessage'
+import PdfTitle from '../../_components/pdf/pdfTitle'
+import PdfBillTo from '../../_components/pdf/pdfBillTo'
+import PdfNum from '../../_components/pdf/pdfNum'
+import PdfItemTable from '../../_components/pdf/pdfItemTable'
+import PdfTYMessage from '../../_components/pdf/pdfTYMessage'
+import { api } from '~/trpc/client';
 
 
 
@@ -113,7 +114,9 @@ const MyDocument = ({invoice}:Props) => (
 
 
 
-  export default function Pdf () {
+  export default function Pdf ({ params }: { params: { slug: string } }) {
+
+    api.useQuery(['invoice', params.slug])
     const [isClient, setIsClient] = useState(false)
   
     useEffect(() => {
@@ -124,7 +127,7 @@ const MyDocument = ({invoice}:Props) => (
       <>
         {isClient && (<>
             <PDFDownloadLink document={<MyDocument invoice={invoiceData}/>} fileName="invoice.pdf">
-          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}</PDFDownloadLink>
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : `${params.slug}`)}</PDFDownloadLink>
           <PDFViewer className='w-full h-screen'>
                 <MyDocument invoice={invoiceData}/>
           </PDFViewer> 

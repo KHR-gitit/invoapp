@@ -10,11 +10,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Invoice {
     id        String   @id @default(cuid())
-    text      String
+    invoiceId String   @unique
+    client    Client   @relation(fields: [clientId], references: [id])
+    clientId  String
+    items     Json  
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    createdBy   Business   @relation(fields: [createdById], references: [id])
+    createdById String
+}
+model Item {
+    id        String   @id @default(cuid())
+    name      String
+}
+
+model Client {
+    id            String   @id @default(cuid())
+    fName         String
+    lName         String
+    address       String
+    contactNumber String
+    email         String
+    invoices      Invoice[]
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    createdBy   Business   @relation(fields: [createdById], references: [id])
+    createdById String
+}
+model Business {
+    id            String   @id @default(cuid())
+    name          String
+    address       String
+    contactNumber String
+    email         String
+    invoices      Invoice[]
+    clients       Client[]
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
 
     createdBy   User   @relation(fields: [createdById], references: [id])
     createdById String
@@ -27,12 +63,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String?  @db.Text
+    access_token      String?  @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String?  @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -55,7 +91,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    bussiness     Business[]
 }
 
 model VerificationToken {
