@@ -20,7 +20,6 @@ interface Props {
   invoice: {
       id: string;
       invoice_no: string;
-      balance: string;
       businessData: {
         company: string;
         email: string;

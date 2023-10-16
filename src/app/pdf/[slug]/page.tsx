@@ -39,7 +39,6 @@ interface Props {
     invoice: {
         id: string;
         invoice_no: string;
-        balance: string;
         businessData: {
           company: string;
           email: string;
@@ -90,7 +89,6 @@ const MyDocument = ({invoice}:Props) => (
 const [invoiceData, setInvoiceData] = useState({
   id: "",
   invoice_no: "",
-  balance: "",
   businessData: {
     company: "",
     email: "",

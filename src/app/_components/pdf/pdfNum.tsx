@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     invoice: {
         id: string;
         invoice_no: string;
-        balance: string;
         businessData: {
           company: string;
           email: string;
