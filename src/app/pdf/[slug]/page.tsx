@@ -10,8 +10,6 @@ import PdfItemTable from '../../_components/pdf/pdfItemTable'
 import PdfTYMessage from '../../_components/pdf/pdfTYMessage'
 import { api } from '~/trpc/client';
 import PdfHeader from '~/app/_components/pdf/pdfHeader';
-import logo from "./../../saiid-bel-hDq8jlhE0co-unsplash.jpg"
-import { StaticImageData } from 'next/image';
 
 
 
