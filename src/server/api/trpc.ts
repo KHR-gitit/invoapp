@@ -97,7 +97,7 @@ export const createAction = experimental_createServerActionHandler(t, {
       // headers: headers(),
       headers: {} as Headers,
     });
-    console.log("ctx", ctx);
+    console.log("ctx here", ctx);
     return ctx;
   },
 });

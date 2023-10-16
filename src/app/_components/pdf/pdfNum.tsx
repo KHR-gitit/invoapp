@@ -26,10 +26,19 @@ const styles = StyleSheet.create({
         id: string;
         invoice_no: string;
         balance: string;
-        company: string;
-        email: string;
-        phone: string;
-        address: string;
+        businessData: {
+          company: string;
+          email: string;
+          phone: string;
+          address: string;
+        }
+        clientData: {
+          fullName: string;
+          email: string;
+          phone: string;
+          address: string;
+        }
+
         trans_date: string;
         due_date: string;
         items: {

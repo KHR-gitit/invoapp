@@ -40,11 +40,21 @@ const styles = StyleSheet.create({
 const PdfTableFooter = ({items}:Props) => {
     const total:number = items.map(item => item.qty * item.rate)
         .reduce((accumulator:number, currentValue:number) => accumulator + currentValue , 0)
-    return(    
+    return(  
+        <>
         <View style={styles.row}>
-            <Text style={styles.description}>TOTAL</Text>
+            <Text style={styles.description}>Sub Total</Text>
             <Text style={styles.total}>{total.toFixed(2)}</Text>
         </View>
+        <View style={styles.row}>
+            <Text style={styles.description}>GST 10%</Text>
+            <Text style={styles.total}>{((10 / 100) * total).toFixed(2)}</Text>
+        </View>
+        <View style={styles.row}>
+            <Text style={styles.description}>TOTAL Amount</Text>
+            <Text style={styles.total}>{(total + ((10 / 100) * total)).toFixed(2)}</Text>
+        </View>
+        </>  
     )
 };
   

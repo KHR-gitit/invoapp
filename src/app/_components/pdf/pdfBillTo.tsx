@@ -17,10 +17,19 @@ const styles = StyleSheet.create({
         id: string;
         invoice_no: string;
         balance: string;
-        company: string;
-        email: string;
-        phone: string;
-        address: string;
+        businessData: {
+          company: string;
+          email: string;
+          phone: string;
+          address: string;
+        }
+        clientData: {
+          fullName: string;
+          email: string;
+          phone: string;
+          address: string;
+        }
+
         trans_date: string;
         due_date: string;
         items: {
@@ -37,10 +46,10 @@ const styles = StyleSheet.create({
   const PdfBillTo = ({invoice}:Props) => (
     <View style={styles.headerContainer}>
         <Text style={styles.billTo}>Bill To:</Text>
-        <Text>{invoice.company}</Text>
-        <Text>{invoice.address}</Text>
-        <Text>{invoice.phone}</Text>
-        <Text>{invoice.email}</Text>
+        <Text>{invoice.clientData.fullName}</Text>
+        <Text>{invoice.clientData.address}</Text>
+        <Text>{invoice.clientData.phone}</Text>
+        <Text>{invoice.clientData.email}</Text>
     </View>
   );
   

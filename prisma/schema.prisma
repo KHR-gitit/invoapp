@@ -12,19 +12,21 @@ datasource db {
 
 model Invoice {
     id        String   @id @default(cuid())
-    invoiceId String   @unique
+    invoiceId Int      @default(autoincrement()) @unique 
     client    Client   @relation(fields: [clientId], references: [id])
     clientId  String
     items     Json  
+    quote     Boolean
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    dueDate   DateTime
 
-    createdBy   Business   @relation(fields: [createdById], references: [id])
-    createdById String
+    businessBy   Business   @relation(fields: [businessId], references: [id])
+    businessId String
 }
 model Item {
     id        String   @id @default(cuid())
-    name      String
+    name      String @unique
 }
 
 model Client {
@@ -38,11 +40,13 @@ model Client {
     createdAt     DateTime @default(now())
     updatedAt     DateTime @updatedAt
 
-    createdBy   Business   @relation(fields: [createdById], references: [id])
-    createdById String
+
+    business   Business   @relation(fields: [businessId], references: [id])
+    businessId String
 }
 model Business {
     id            String   @id @default(cuid())
+    logo          String
     name          String
     address       String
     contactNumber String
