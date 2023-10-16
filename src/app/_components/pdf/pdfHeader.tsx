@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
   interface Props {
     invoice: {
         id: string;
-        invoice_no: number;
+        invoice_no: number | undefined;
         businessData: {
-          company: string;
-          email: string;
-          phone: string;
-          address: string;
+          company: string | undefined;
+          email: string | undefined;
+          phone: string | undefined;
+          address: string | undefined;
         }
         clientData: {
           fullName: string;
-          email: string;
-          phone: string;
-          address: string;
+          email: string | undefined;
+          phone: string | undefined;
+          address: string | undefined;
         }
 
         trans_date: string;
