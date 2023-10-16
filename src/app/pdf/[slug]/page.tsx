@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 interface Props {
     invoice: {
         id: string;
-        invoice_no: string;
+        invoice_no: number;
         businessData: {
           company: string;
           email: string;
@@ -88,7 +88,7 @@ const MyDocument = ({invoice}:Props) => (
 
 const [invoiceData, setInvoiceData] = useState({
   id: "",
-  invoice_no: "",
+  invoice_no: 0,
   businessData: {
     company: "",
     email: "",

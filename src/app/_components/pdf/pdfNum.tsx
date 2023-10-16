@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   interface Props {
     invoice: {
         id: string;
-        invoice_no: string;
+        invoice_no: number;
         businessData: {
           company: string;
           email: string;
