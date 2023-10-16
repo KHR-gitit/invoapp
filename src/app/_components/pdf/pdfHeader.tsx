@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     <View style={styles.viewContainer}>
 
     
-<Image src={logo.src} style={styles.logo} alt="the logo"/>
+<Image src={logo.src} style={styles.logo}/>
     <View style={styles.headerContainer}>
         <Text style={styles.billTo}>Bill From:</Text>
         <Text>{invoice.businessData.company}</Text>
