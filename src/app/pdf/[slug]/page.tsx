@@ -87,7 +87,32 @@ const MyDocument = ({invoice}:Props) => (
 
   export default function Pdf ({ params }: { params: { slug: string } }) {
 
-const [invoiceData, setInvoiceData] = useState({})
+const [invoiceData, setInvoiceData] = useState({
+  id: "",
+  invoice_no: "",
+  balance: "",
+  businessData: {
+    company: "",
+    email: "",
+    phone: "",
+    address: "",
+  },
+  clientData: {
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+  },
+
+  trans_date: "",
+  due_date: "",
+  items: [{
+      sno: 0,
+      desc: "",
+      qty: 0,
+      rate: 0,
+  }]
+})
 const [isClient, setIsClient] = useState(false)
 useEffect(() => {
   const fetchInvoice = async () => {
@@ -102,7 +127,7 @@ useEffect(() => {
   }
   void fetchInvoice()
   
-}, [])
+}, [params.slug])
 
 
   
